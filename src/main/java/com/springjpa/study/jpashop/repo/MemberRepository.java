@@ -1,6 +1,6 @@
 package com.springjpa.study.jpashop.repo;
 
-import com.springjpa.study.jpashop.entity.Member;
+import com.springjpa.study.jpashop.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 /**
  * 회원 객체 레포지토리.
  *
- * @see com.springjpa.study.jpashop.entity.Member
+ * @see com.springjpa.study.jpashop.domain.Member
  */
 @Repository
 public class MemberRepository {
