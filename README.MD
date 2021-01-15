@@ -72,3 +72,5 @@ spring.jpa.hibernate.naming.physical-strategy:
 * [Gradle](https://docs.gradle.org/current/userguide/userguide.html)
 * [Spring Boot JPA](https://docs.spring.io/spring-boot/docs/2.4.1/reference/htmlsingle/#boot-features-jpa-and-spring-data)
 * [Spring Boot Web](https://docs.spring.io/spring-boot/docs/2.4.1/reference/htmlsingle/#boot-features-developing-web-applications)
+* [Tailwind css](https://tailwindcss.com/)
+* [Gradle Plugin for Node](https://github.com/node-gradle/gradle-node-plugin)
