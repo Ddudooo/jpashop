@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id "com.github.node-gradle.node" version "2.2.3"
     id 'java'
 }
 
@@ -18,11 +19,34 @@ repositories {
     mavenCentral()
 }
 
+node {
+    version = '14.15.4'
+    download = true
+}
+
+task buildScss(type: NpmTask) {
+    //gulp으로 파이프라인 생성해서 scss 파일 css 파일로 생성
+    println 'Build tailwind css file...'
+    println 'npm run css'
+    args = ["run", "css"]
+}
+
+task copyFrontLib(type: Copy) {
+    println 'Copy static front lib build/resources'
+    from "${projectDir}/src/main/resources/static"
+    into "${projectDir}/build/resources/main/static/."
+}
+
+buildScss.dependsOn npmInstall
+copyFrontLib.dependsOn buildScss
+compileJava.dependsOn copyFrontLib
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-devtools'
     /**
      * 데이터 소스 로깅.
      * <p>

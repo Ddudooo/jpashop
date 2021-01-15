@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-400">
+<div
+    class="text-center bg-white rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div class="mb-auto">
+        <div class="text-4xl font-bold text-left pb-4 ">
+            <h1 class="flex flex-nowrap">
+                <svg class="w-8 mr-2 flex-none fill-current text-lightBlue-500" viewBox="0 0 20 20"
+                     version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18,9.87016923 L18,20 L2,20 L2,9.87077601 C2.30866727,9.95497234 2.64341414,10 3,10 C3.70959284,10 4.3932222,9.81559798 5,9.49198691 L5,14 L15,14 L15,9.49330204 C15.6064249,9.81616801 16.2898957,10 17,10 C17.3565204,10 17.6912816,9.95474687 18,9.87016923 Z M3,0 L0.94921875,6.15234375 C0.423463896,7.72960831 1.34314575,9 3,9 C4.65348288,9 6.14783953,7.66944427 6.33020882,6.02812059 L7,0 L3,0 Z M8,0 L7.30003297,6.29970324 C7.13486445,7.78621995 8.21738979,9 9.71911621,9 L10.2808838,9 C11.7858105,9 12.8656707,7.79103596 12.699967,6.29970324 L12,0 L8,0 Z M13,0 L13.6697912,6.02812059 C13.8524466,7.672019 15.3431458,9 17,9 C18.6534829,9 19.5750203,7.72506087 19.0507813,6.15234375 L17,0 L13,0 Z"
+                        id="Combined-Shape"></path>
+                </svg>
+                JPA Study - SHOP
+            </h1>
+        </div>
+        <div class="px-3 py-2 flex flex-col text-left mb-3 shadow rounded-lg">
+            <div class="flex flex-nowrap mb-2">
+                <div class="w-8 mr-2 flex-none text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </div>
+                <p class="font-bold text-lg flex-none">회원 기능</p>
+            </div>
+            <div class="ml-10 flex flex-row flex-wrap space-x-4">
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-green-400 hover:text-white"
+                    href="/members/new">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path
+                            d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                    </svg>
+                    <span class="flex-none font-bold">회원 가입</span>
+                </a>
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-blue-200 hover:text-white"
+                    href="/members">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path
+                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z"/>
+                        <path fill-rule="evenodd"
+                              d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="flex-none font-bold">회원 목록</span>
+                </a>
+            </div>
+        </div>
+        <div class="px-3 py-2 flex flex-col text-left mb-3 shadow rounded-lg">
+            <div class="flex flex-nowrap mb-2">
+                <svg class="w-8 mr-2 flex-none text-yellow-400" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+                </svg>
+                <p class="font-bold text-lg flex-none">상품 기능</p>
+            </div>
+            <div class="ml-10 flex flex-row flex-wrap space-x-4">
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-green-400 hover:text-white"
+                    href="/items/new">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="flex-none font-bold">상품 등록</span>
+                </a>
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-blue-200 hover:text-white"
+                    href="/items">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path
+                            d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                    </svg>
+                    <span class="flex-none font-bold">상품 목록</span>
+                </a>
+            </div>
+        </div>
+        <div class="px-3 py-2 flex flex-col text-left mb-3 shadow rounded-lg">
+            <div class="flex flex-nowrap mb-2">
+                <svg class="w-8 mr-2 flex-none text-indigo-500" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                </svg>
+                <p class="font-bold text-lg flex-none">주문 기능</p>
+            </div>
+            <div class="ml-10 flex flex-row flex-wrap space-x-4">
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-green-400 hover:text-white"
+                    href="/order">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <span class="flex-none font-bold">상품 주문</span>
+                </a>
+                <a
+                    class="flex p-2 shadow rounded bg-white text-black hover:bg-blue-200 hover:text-white"
+                    href="/orders">
+                    <svg class="w-5 mr-1 flex-none" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path
+                            d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                    </svg>
+                    <span class="flex-none font-bold">주문 내역</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>
