@@ -75,15 +75,15 @@
                 </th>
                 <th scope="col"
                     class="flex-grow flex-shrink-0 w-32 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                    대표 상품 이름
+                    상품 이름
                 </th>
                 <th scope="col"
                     class="flex-grow flex-shrink-0 w-40 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                    대표 상품 주문 가격
+                    주문 가격
                 </th>
                 <th scope="col"
                     class="flex-grow flex-shrink-0 w-40 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                    대표 상품 <br/>수량
+                    수량
                 </th>
                 <th scope="col"
                     class="flex-grow flex-shrink-0 w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -101,28 +101,30 @@
             </thead>
             <tbody
                 class="bg-white divide-y divide-gray-200 overflow-y-scroll overflow-x-scroll flex flex-col items-center justify-between w-full max-h-screen-70">
-            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left flex w-full"
-                th:each="order : ${orders}">
-                <td class="flex-none w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
-                    th:text="${order.id}"></td>
-                <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
-                    th:text="${order.member.name}"></td>
-                <td class="flex-grow flex-shrink-0 w-32 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
-                    th:text="${order.orderItems[0].item.name}"></td>
-                <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
-                    th:text="${order.orderItems[0].orderPrice}"></td>
-                <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
-                    th:text="${order.orderItems[0].count}"></td>
-                <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
-                    th:text="${order.orderStatus}"></td>
-                <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
-                    th:text="${order.orderDate}"></td>
-                <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                    <a th:if="${order.orderStatus.name() == 'ORDER'}" href="#"
-                       th:href="'javascript:cancel('+${order.id}+')'"
-                       class="rounded px-8 py-2 text-red-300 hover:shadow-lg hover:bg-red-400 hover:text-white">취소</a>
-                </td>
-            </tr>
+            <th:block th:each="order : ${orders}">
+                <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left flex w-full"
+                    th:each="orderItem : ${order.orderItems}">
+                    <td class="flex-none w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                        th:text="${order.id}"></td>
+                    <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
+                        th:text="${order.member.name}"></td>
+                    <td class="flex-grow flex-shrink-0 w-32 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
+                        th:text="${orderItem.item.name}"></td>
+                    <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
+                        th:text="${orderItem.orderPrice}"></td>
+                    <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
+                        th:text="${orderItem.count}"></td>
+                    <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                        th:text="${order.orderStatus}"></td>
+                    <td class="flex-grow flex-shrink-0 w-40 px-6 py-4 text-sm text-gray-500 whitespace-nowrap truncate"
+                        th:text="${order.orderDate}"></td>
+                    <td class="flex-grow flex-shrink-0 w-24 px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <a th:if="${order.orderStatus.name() == 'ORDER'}" href="#"
+                           th:href="'javascript:cancel('+${order.id}+')'"
+                           class="rounded px-8 py-2 text-red-300 hover:shadow-lg hover:bg-red-400 hover:text-white">취소</a>
+                    </td>
+                </tr>
+            </th:block>
             </tbody>
         </table>
     </div>
