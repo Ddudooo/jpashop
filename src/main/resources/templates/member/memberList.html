@@ -9,43 +9,44 @@
     class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div class="mb-auto overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-        <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-            <tr>
+        <table class="w-full overflow-x-scroll divide-y divide-gray-200">
+            <thead class="bg-gray-50 flex w-full">
+            <tr class="flex w-full">
                 <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="flex-none w-20 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     #
                 </th>
                 <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="flex-grow w-20 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     이름
                 </th>
                 <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="flex-grow w-20 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     도시
                 </th>
                 <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="flex-grow w-20 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     주소
                 </th>
                 <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="flex-grow w-20 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     우편번호
                 </th>
             </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left"
+            <tbody
+                class="bg-white divide-y divide-gray-200 overflow-y-scroll flex flex-col items-center justify-between w-full max-h-screen-4/5">
+            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left flex w-full"
                 th:each="member : ${members}">
-                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                <td class="flex-none w-20 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
                     th:text="${member.id}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                <td class="flex-grow w-20 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
                     th:text="${member.name}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                <td class="flex-grow w-20 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
                     th:text="${member.address?.city}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                <td class="flex-grow w-20 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
                     th:text="${member.address?.street}"></td>
-                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                <td class="flex-grow w-20 px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
                     th:text="${member.address?.zipcode}"></td>
             </tr>
             </tbody>

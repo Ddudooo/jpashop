@@ -4,7 +4,12 @@ module.exports = {
     purge: [],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            maxHeight: {
+                'screen-4/5': '80vh',
+                'screen-70': '70vh'
+            }
+        },
         colors: colors,
         minWidth: {
             '0': '0',

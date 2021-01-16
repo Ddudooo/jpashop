@@ -39,7 +39,13 @@ public class MemberService {
     }
 
     //단일 회원 조회
-    public Member findMemberById(Long id) {
+    public Member findOne(Long id) {
         return memberRepo.findOne(id);
+    }
+
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepo.findOne(id);
+        member.setName(name);
     }
 }
