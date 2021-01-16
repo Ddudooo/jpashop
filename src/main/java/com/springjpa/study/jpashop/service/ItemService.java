@@ -26,6 +26,22 @@ public class ItemService {
     }
 
     /**
+     * 물품 정보 업데이트.
+     *
+     * @param id            물품 ID.
+     * @param name          상품명.
+     * @param price         가격.
+     * @param stockQuantity 수량.
+     */
+    @Transactional
+    public void updateItem(Long id, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(id);
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+    }
+
+    /**
      * 물품들 조회.
      *
      * @return 조회된 물품들.

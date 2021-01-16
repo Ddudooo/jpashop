@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-900">
+<div
+    class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div class="mb-auto overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+        <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    #
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    이름
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    도시
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    주소
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    우편번호
+                </th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left"
+                th:each="member : ${members}">
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${member.id}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${member.name}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${member.address?.city}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${member.address?.street}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${member.address?.zipcode}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

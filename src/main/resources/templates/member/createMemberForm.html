@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-900">
+<div
+    class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form class="mb-auto text-left text-gray-500" role="form" action="/members/new"
+          th:object="${memberForm}"
+          method="post">
+        <div class="text-center mb-10">
+            <h1 class="font-bold text-3xl text-gray-900">회원 가입</h1>
+            <p>회원 가입 정보 입력해주세요</p>
+        </div>
+        <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+                <label th:for="name" class="text-xs font-semibold px-1">이름</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{name}"
+                           th:class="
+                                ${#fields.hasErrors('name')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="이름을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+        </div>
+        <div class="flex -mx-3">
+            <div class="w-1/3 px-3 mb-5">
+                <label th:for="city" class="text-xs font-semibold px-1">도시</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{city}"
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="도시를 입력하세요">
+                </div>
+            </div>
+            <div class="w-1/3 px-3 mb-5">
+                <label th:for="street" class="text-xs font-semibold px-1">거리</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 6a4 4 0 1 1 8 0v8h3l-4 4-4-4h3V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8a4 4 0 1 1-8 0V6H0l4-4 4 4H5v8a2 2 0 0 0 2 2 2 2 0 0 0 2-2V6z"></path>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{street}"
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="거리를 입력하세요">
+                </div>
+            </div>
+            <div class="w-1/3 px-3 mb-5">
+                <label th:for="zipcode" class="text-xs font-semibold px-1">우편번호</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{zipcode}"
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="우편번호를 입력하세요">
+                </div>
+            </div>
+        </div>
+        <div class="flex -mx-3 mt-4">
+            <div class="w-full px-3 mb-5">
+                <button
+                    type="submit"
+                    class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                    회원 가입
+                </button>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

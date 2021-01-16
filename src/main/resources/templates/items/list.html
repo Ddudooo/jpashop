@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-900">
+<div
+    class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div class="mb-auto overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+        <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    #
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    상품명
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    가격
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    재고 수량
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+
+                </th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left"
+                th:each="item : ${items}">
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${item.id}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${item.name}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${item.price}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${item.stockQuantity}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"
+                       class="rounded px-8 py-2 text-blue-300 hover:shadow-lg hover:bg-blue-300 hover:text-white">수정</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

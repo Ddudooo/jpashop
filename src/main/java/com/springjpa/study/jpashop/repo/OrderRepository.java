@@ -94,13 +94,13 @@ public class OrderRepository {
         List<Predicate> criteria = new ArrayList<>();
 
         if (orderSearch.getOrderStatus() != null) {
-            Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
+            Predicate status = cb.equal(o.get("orderStatus"), orderSearch.getOrderStatus());
             criteria.add(status);
         }
 
         if (StringUtils.hasText(orderSearch.getMemberName())) {
             Predicate name = cb
-                .like(m.<String>get("name"), "%" + orderSearch.getOrderStatus() + "%");
+                .like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
             criteria.add(name);
         }
 

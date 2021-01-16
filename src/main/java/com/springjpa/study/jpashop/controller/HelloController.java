@@ -1,4 +1,4 @@
-package com.springjpa.study.jpashop.rest;
+package com.springjpa.study.jpashop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

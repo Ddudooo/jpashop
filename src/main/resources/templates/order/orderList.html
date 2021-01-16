@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-900">
+<div
+    class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div class="mb-4">
+        <form th:object="${orderSearch}">
+            <div class="flex -mx-3">
+                <div class="flex-grow w-1/3 px-3">
+                    <div class="flex">
+                        <div
+                            class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                            <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                        </div>
+                        <input type="text" th:field="*{memberName}" placeholder="회원명"
+                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+                    </div>
+                </div>
+                <div class="flex-grow w-1/3 px-3">
+                    <div class="flex">
+                        <div
+                            class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                            <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                                 fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <select th:field="*{orderStatus}"
+                                class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                            <option value="">주문상태</option>
+                            <option
+                                th:each="status : ${T(com.springjpa.study.jpashop.domain.OrderStatus).values()}"
+                                th:value="${status}"
+                                th:text="${status}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex-none w-32 px-3">
+                    <button
+                        type="submit"
+                        class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold">
+                        검색
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="mb-auto overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+        <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    #
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    회원명
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    대표 상품 이름
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    대표 상품 주문 가격
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    대표 상품 수량
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    상태
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    일시
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+
+                </th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="transition-all hover:bg-gray-100 hover:shadow-lg text-left"
+                th:each="order : ${orders}">
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.id}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.member.name}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.orderItems[0].item.name}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.orderItems[0].orderPrice}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.orderItems[0].count}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.orderStatus}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"
+                    th:text="${order.orderDate}"></td>
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    <a th:if="${order.orderStatus.name() == 'ORDER'}" href="#"
+                       th:href="'javascript:cancel('+${order.id}+')'"
+                       class="rounded px-8 py-2 text-red-300 hover:shadow-lg hover:bg-red-400 hover:text-white">취소</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+<script>
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/orders/" + id + "/cancel");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>JPA STUDY</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-900">
+<div
+    class="text-center bg-gray-100 rounded-lg max-w-lg shadow px-5 py-4 min-w-80 min-h-80 flex flex-col justify-between">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form class="mb-auto text-left text-gray-500" th:object="${form}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="text-center mb-10">
+            <h1 class="font-bold text-3xl text-gray-900">상품 수정</h1>
+            <p>수정할 상품 정보 입력해주세요</p>
+        </div>
+        <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+                <label th:for="name" class="text-xs font-semibold px-1">상품명</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{name}"
+                           th:class="
+                                ${#fields.hasErrors('name')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="상품명을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+        </div>
+        <div class="flex -mx-3">
+            <div class="w-1/2 px-3 mb-5">
+                <label th:for="price" class="text-xs font-semibold px-1">가격</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <input type="number" th:field="*{price}" min="0" step="100"
+                           th:class="
+                                ${#fields.hasErrors('price')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="가격을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('price')}"
+                   th:errors="*{price}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+            <div class="w-1/2 px-3 mb-5">
+                <label th:for="stockQuantity" class="text-xs font-semibold px-1">수량</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                    <input type="number" th:field="*{stockQuantity}" min="1"
+                           th:class="
+                                ${#fields.hasErrors('stockQuantity')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="수량을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('stockQuantity')}"
+                   th:errors="*{stockQuantity}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+        </div>
+        <div class="flex -mx-3">
+            <div class="w-1/2 px-3 mb-5">
+                <label th:for="author" class="text-xs font-semibold px-1">저자</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{author}" readonly
+                           th:class="
+                                ${#fields.hasErrors('author')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="저자을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('author')}"
+                   th:errors="*{author}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+            <div class="w-1/2 px-3 mb-5">
+                <label th:for="isbn" class="text-xs font-semibold px-1">isbn</label>
+                <div class="flex">
+                    <div
+                        class="w-10 z-10 pl-1 text-center flex items-center justify-center">
+                        <svg class="text-gray-400 w-4/5" xmlns="http://www.w3.org/2000/svg"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                        </svg>
+                    </div>
+                    <input type="text" th:field="*{isbn}" readonly
+                           th:class="
+                                ${#fields.hasErrors('isbn')} ?
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-red-600 outline-none focus:border-indigo-500' :
+                                'w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500'
+                                "
+                           class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                           placeholder="ISBN을 입력하세요">
+                </div>
+                <p th:if="${#fields.hasErrors('isbn')}"
+                   th:errors="*{isbn}"
+                   class="-ml-10 pl-10 pr-3 py-2 text-red-500"
+                >Incorrect data</p>
+            </div>
+        </div>
+        <div class="flex -mx-3 mt-4">
+            <div class="w-full px-3 mb-5">
+                <button
+                    type="submit"
+                    class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                    상품 등록
+                </button>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

@@ -9,9 +9,12 @@ import com.springjpa.study.jpashop.domain.item.Item;
 import com.springjpa.study.jpashop.repo.ItemRepository;
 import com.springjpa.study.jpashop.repo.MemberRepository;
 import com.springjpa.study.jpashop.repo.OrderRepository;
+import com.springjpa.study.jpashop.repo.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 주문 서비스.
@@ -68,8 +71,13 @@ public class OrderService {
         order.cancel();
     }
 
-    //검색
-    /*public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
-    }*/
+    /**
+     * 주문 조회.
+     *
+     * @param orderSearch 검색 조건
+     * @return 조회된 주문.
+     */
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByCriteria(orderSearch);
+    }
 }
