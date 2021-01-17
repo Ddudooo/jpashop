@@ -15,7 +15,7 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    org.hibernate.type: trace
+#    org.hibernate.type: trace
 
 # [https://p6spy.readthedocs.io/en/latest/configandusage.html](p6spy_config_guide)
 decorator:

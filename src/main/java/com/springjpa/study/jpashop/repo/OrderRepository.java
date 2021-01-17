@@ -108,5 +108,13 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
         return query.getResultList();
     }
-    //QueryDSL로 작성
+
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+            "select o from Order o "
+                + "join fetch o.member m "
+                + "join fetch o.delivery d",
+            Order.class
+        ).getResultList();
+    }
 }
