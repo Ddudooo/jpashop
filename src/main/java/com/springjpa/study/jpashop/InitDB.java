@@ -50,15 +50,12 @@ public class InitDB {
             List<Book> books = createBooks(100);
             members
                 .forEach(m -> {
-                    int rndOrder = new Random().nextInt() % 3 + 1; //1 ~ 4
+                    int rndOrder = new Random().nextInt(4) + 1; //1 ~ 4
                     Set<Book> rndBook = new HashSet<>();
                     for (int i = 0; i < rndOrder; i++) {
                         rndBook.add(books.get(new Random().nextInt(books.size())));
                     }
-                    rndBook
-                        .forEach(b -> {
-                            createOrder(m, b);
-                        });
+                    createOrder(m, rndBook);
                 });
         }
 
@@ -103,6 +100,21 @@ public class InitDB {
             delivery.setAddress(member.getAddress());
             delivery.setStatus(DeliveryStatus.READY);
             Order order = Order.createOrder(member, delivery, orderItem);
+            em.persist(order);
+        }
+
+        public void createOrder(Member member, Set<Book> books) {
+            int rand = (new Random().nextInt(10) + 1);
+            List<OrderItem> orderItems = new ArrayList<>();
+            for (Book book : books) {
+                OrderItem orderItem = OrderItem.createOrderItem(book, book.getPrice(), rand);
+                orderItems.add(orderItem);
+            }
+            Delivery delivery = new Delivery();
+            delivery.setAddress(member.getAddress());
+            delivery.setStatus(DeliveryStatus.READY);
+            Order order = Order.createOrder(member, delivery,
+                orderItems.toArray(new OrderItem[orderItems.size()]));
             em.persist(order);
         }
 
